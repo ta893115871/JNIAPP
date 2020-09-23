@@ -6,14 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/sample_text"
+    <Button
+        android:id="@+id/id_btn_method_dy_reg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:onClick="onMethodDynamic"
+        android:text="动态库的函数注册"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/id_btn_method_cb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onMethodCallBack"
+        android:text="在jni线程中回调到java层"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/id_btn_method_dy_reg" />
 </androidx.constraintlayout.widget.ConstraintLayout>

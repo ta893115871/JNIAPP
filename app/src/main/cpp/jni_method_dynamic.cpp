@@ -1,10 +1,4 @@
-#include <jni.h>
-#include <string>
-#include <android/log.h>
-
-#define LOG_TAG "jni"
-#define LOG_D(...) __android_log_print(ANDROID_LOG_DEBUG, LOG_TAG, __VA_ARGS__)
-
+#include "common.h"
 #define  JAVA_CLASS "com/bj/gxz/jniapp/JNIMethodDynamic"
 
 jstring getString(JNIEnv *env, jobject thiz) {
