@@ -1,4 +1,5 @@
 #include "common.h"
+
 #define  JAVA_CLASS "com/bj/gxz/jniapp/JNIMethodDynamic"
 
 jstring getString(JNIEnv *env, jobject thiz) {
@@ -13,12 +14,11 @@ JNINativeMethod gMethods[] = {
         {"stringFromJNI", "()Ljava/lang/String;", (void *) getString},
         {"sum",           "(II)I",                (void *) add}
 };
-jclass java_cls;
 
 jint
 registerNativeMethods(JNIEnv *env, const char *clsName, JNINativeMethod *nativeMethod,
                       int numMethods) {
-    java_cls = env->FindClass(JAVA_CLASS);
+    jclass java_cls = env->FindClass(JAVA_CLASS);
     if (java_cls == nullptr) {
         return JNI_FALSE;
     }
@@ -34,7 +34,8 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
     if (vm->GetEnv(reinterpret_cast<void **>(&env), JNI_VERSION_1_6) != JNI_OK) {
         return JNI_ERR;
     }
-    jint ret = registerNativeMethods(env, JAVA_CLASS, gMethods, 2);
+    jint ret = registerNativeMethods(env, JAVA_CLASS, gMethods,
+                                     sizeof(gMethods) / sizeof(JNINativeMethod));
     if (ret == JNI_FALSE) {
         return JNI_ERR;
     }
@@ -47,6 +48,7 @@ JNIEXPORT void JNI_OnUnload(JavaVM *vm, void *reserved) {
     if (vm->GetEnv(reinterpret_cast<void **>(&env), JNI_VERSION_1_6) != JNI_OK) {
         return;
     }
+    jclass java_cls = env->FindClass(JAVA_CLASS);
     if (java_cls != nullptr) {
         jint ret = env->UnregisterNatives(java_cls);
         LOG_D("JNI_OnUnload Call ret=%d=", ret);
