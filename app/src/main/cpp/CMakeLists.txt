@@ -18,6 +18,7 @@ add_library( # Sets the name of the library.
 
         # Provides a relative path to your source file(s).
 
+        crash.cpp
         jni_exception.cpp
         jni_thread_callback.cpp
 #        jni_method_dynamic.cpp
@@ -31,7 +32,6 @@ add_library( # Sets the name of the library.
 
 find_library( # Sets the name of the path variable.
         log-lib
-
         # Specifies the name of the NDK library that
         # you want CMake to locate.
         log)

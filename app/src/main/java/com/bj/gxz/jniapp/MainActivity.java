@@ -9,11 +9,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bj.gxz.jniapp.cb.INativeListener;
 import com.bj.gxz.jniapp.cb.INativeThreadListener;
 import com.bj.gxz.jniapp.cb.JNIThreadCallBack;
+import com.bj.gxz.jniapp.crash.JNICrash;
 import com.bj.gxz.jniapp.exception.JNIException;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "JNI";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,5 +53,10 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
             Log.e(TAG, "nativeThrowException Exception:", e);
         }
+    }
+
+
+    public void onJniCrash(View view) {
+        new JNICrash().crash();
     }
 }
