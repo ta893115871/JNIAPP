@@ -18,6 +18,7 @@ add_library( # Sets the name of the library.
 
         # Provides a relative path to your source file(s).
 
+        jni_exception.cpp
         jni_thread_callback.cpp
 #        jni_method_dynamic.cpp
         )
@@ -41,7 +42,7 @@ find_library( # Sets the name of the path variable.
 
 target_link_libraries( # Specifies the target library.
         native-lib
-
+        jnigraphics #JNI层,添加bitmap支持
         # Links the target library to the log library
         # included in the NDK.
         ${log-lib})

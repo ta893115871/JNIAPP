@@ -9,9 +9,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bj.gxz.jniapp.cb.INativeListener;
 import com.bj.gxz.jniapp.cb.INativeThreadListener;
 import com.bj.gxz.jniapp.cb.JNIThreadCallBack;
+import com.bj.gxz.jniapp.exception.JNIException;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "JNI";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,9 +22,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onMethodDynamic(View view) {
-//        JNIMethodDynamic jniMethodDynamic = new JNIMethodDynamic();
-//        Log.d(TAG, "stringFromJNI:" + jniMethodDynamic.stringFromJNI());
-//        Log.d(TAG, "sum:" + jniMethodDynamic.sum(1, 2));
+        JNIMethodDynamic jniMethodDynamic = new JNIMethodDynamic();
+        Log.d(TAG, "stringFromJNI:" + jniMethodDynamic.stringFromJNI());
+        Log.d(TAG, "sum:" + jniMethodDynamic.sum(1, 2));
     }
 
     public void onMethodCallBack(View view) {
@@ -40,5 +42,16 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "onSuccess invoked,threadName:" + Thread.currentThread().getName());
             }
         });
+    }
+
+    public void onJniException(View view) {
+        JNIException jniException = new JNIException();
+        jniException.nativeInvokeJavaException();
+        try {
+            jniException.nativeThrowException();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.e(TAG, "nativeThrowException Exception:", e);
+        }
     }
 }

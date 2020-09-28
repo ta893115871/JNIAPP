@@ -23,4 +23,15 @@
         android:text="在jni线程中回调到java层"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/id_btn_method_dy_reg" />
+
+    <Button
+        android:id="@+id/id_btn_exception"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onJniException"
+        android:text="jni异常"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/id_btn_method_cb" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

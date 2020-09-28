@@ -32,7 +32,7 @@ extern "C"
 JNIEXPORT void JNICALL
 Java_com_bj_gxz_jniapp_cb_JNIThreadCallBack_nativeInThreadCallBack(JNIEnv *env, jobject thiz,
                                                                    jobject call_back) {
-    // 创建一个jni中的全局引用
+    // 创建一个jni中的全局引用，可以在线程里面用
     gCallBackObj = env->NewGlobalRef(call_back);
     jclass cls = env->GetObjectClass(call_back);
     gCallBackMid = env->GetMethodID(cls, "onSuccess", "(Ljava/lang/String;)V");
@@ -62,15 +62,18 @@ void *writeFile(void *args) {
     LOG_D("file write done");
 
     // https://docs.oracle.com/javase/1.5.0/docs/guide/jni/spec/invocation.html
-    JNIEnv *env = nullptr;
-    // 将当前线程添加到Java虚拟机上，返回一个属于当前线程的JNIEnv指针env
+    // 调用的话，需要JNIEnv *env
+    // JNIEnv *env 无法跨越线程，只有JavaVM才能跨越线程
+    // 每个原生方法的 JNIEvn 接口指针在与方法调用相关的线程中也是有效的，但是它不能被其它线程缓存或使用。
+    JNIEnv * env = nullptr; // 新的env
+    // 将当前native的线程附加到Java虚拟机上，返回一个属于当前线程的JNIEnv指针env
     if (gvm->AttachCurrentThread(&env, nullptr) == 0) {
         jstring jstr = env->NewStringUTF("write success");
         // 回调到java层
         env->CallVoidMethod(gCallBackObj, gCallBackMid, jstr);
         // 删除jni中全局引用
         env->DeleteGlobalRef(gCallBackObj);
-        // 从Java虚拟机上分离当前线程
+        // 从Java虚拟机上分离当前native线程, 解除 附加 到 JVM 的native线程
         gvm->DetachCurrentThread();
     }
     return nullptr;
