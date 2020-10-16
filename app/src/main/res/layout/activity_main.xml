@@ -42,5 +42,13 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/id_btn_exception" />
 
+    <Button
+        android:id="@+id/id_btn_ref"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onJniRef"
+        android:text="jni-引用"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/id_btn_crash" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

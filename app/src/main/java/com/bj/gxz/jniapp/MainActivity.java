@@ -11,6 +11,7 @@ import com.bj.gxz.jniapp.cb.INativeThreadListener;
 import com.bj.gxz.jniapp.cb.JNIThreadCallBack;
 import com.bj.gxz.jniapp.crash.JNICrash;
 import com.bj.gxz.jniapp.exception.JNIException;
+import com.bj.gxz.jniapp.ref.JNIRef;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "JNI";
@@ -59,4 +60,26 @@ public class MainActivity extends AppCompatActivity {
     public void onJniCrash(View view) {
         new JNICrash().crash();
     }
+
+    private JNIRef jniRef = new JNIRef();
+
+    public void onJniRef(View view) {
+        String s = jniRef.jnilocalRef();
+        Log.e(TAG, "jnilocalRef=" + s);
+
+        String ret1 = jniRef.jniGlobalRef();
+        Log.e(TAG, "jniGlobalRef=" + ret1);
+        String ret2 = jniRef.jniGlobalRef();
+        Log.e(TAG, "jniGlobalRef=" + ret2);
+        jniRef.delGlobalRef();
+
+        String ret3 = jniRef.jniWeakGlobalRef();
+        Log.e(TAG, "jniWeakGlobalRef=" + ret3);
+        String ret4 = jniRef.jniWeakGlobalRef();
+        Log.e(TAG, "jniWeakGlobalRef=" + ret4);
+        jniRef.delWeakGlobalRef();
+
+        jniRef.localRefOverflow();
+    }
+
 }

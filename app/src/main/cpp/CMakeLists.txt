@@ -18,10 +18,12 @@ add_library( # Sets the name of the library.
 
         # Provides a relative path to your source file(s).
 
+
+        jni_ref.cpp
         crash.cpp
         jni_exception.cpp
         jni_thread_callback.cpp
-#        jni_method_dynamic.cpp
+        #        jni_method_dynamic.cpp
         )
 
 # Searches for a specified prebuilt library and stores the path as a
