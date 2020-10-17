@@ -80,6 +80,14 @@ public class MainActivity extends AppCompatActivity {
         jniRef.delWeakGlobalRef();
 
         jniRef.localRefOverflow();
+        jniRef.refSame();
+
+        String ret5 = jniRef.refCache();
+        Log.e(TAG, "refCache=" + ret5);
+        String ret6 = jniRef.refCache();
+        Log.e(TAG, "refCache=" + ret6);
+        jniRef.delRefCache();
     }
+
 
 }

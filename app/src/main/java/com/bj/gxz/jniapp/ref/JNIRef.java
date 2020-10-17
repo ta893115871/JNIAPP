@@ -20,4 +20,8 @@ public class JNIRef {
 
     public native void localRefOverflow();
 
+    public native void refSame();
+    public native String refCache();
+    public native void delRefCache();
+
 }

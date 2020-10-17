@@ -118,3 +118,45 @@ Java_com_bj_gxz_jniapp_ref_JNIRef_localRefOverflow(JNIEnv *env, jobject instance
     }
     LOG_D("localRefOverflow end");
 }
+
+extern "C" JNIEXPORT void  JNICALL
+Java_com_bj_gxz_jniapp_ref_JNIRef_refSame(JNIEnv *env, jobject instance) {
+    jclass local_j_cls_1 = env->FindClass("java/util/ArrayList");
+    jclass local_j_cls_2 = env->FindClass("java/util/ArrayList");
+    jboolean same1 = env->IsSameObject(local_j_cls_1, local_j_cls_2);
+    LOG_D("%d", same1);
+    jboolean same2 = env->IsSameObject(local_j_cls_1, nullptr);
+    LOG_D("%d", same2);
+    env->DeleteLocalRef(local_j_cls_1);
+    env->DeleteLocalRef(local_j_cls_2);
+}
+
+static jclass g_j_cls_cache;
+extern "C" JNIEXPORT jstring JNICALL
+Java_com_bj_gxz_jniapp_ref_JNIRef_refCache(JNIEnv *env, jobject instance) {
+    if (g_j_cls_cache == nullptr) {
+        jclass local_j_cls = env->FindClass("java/lang/String");
+        // 将local_j_cls局部引用改为全局引用
+        g_j_cls_cache = (jclass) env->NewGlobalRef(local_j_cls);
+    } else {
+        LOG_D("g_j_cls_cache use cache");
+    }
+
+    // 调用public String(String value); 构造
+    static jmethodID j_mid;
+    if (j_mid == nullptr) {
+        j_mid = env->GetMethodID(g_j_cls_cache, "<init>", "(Ljava/lang/String;)V");
+    } else {
+        LOG_D("j_mid use cache");
+    }
+
+    jstring str = env->NewStringUTF("refCache");
+    jstring j_str = (jstring) env->NewObject(g_j_cls_cache, j_mid, str);
+    return j_str;
+}
+extern "C" JNIEXPORT void JNICALL
+Java_com_bj_gxz_jniapp_ref_JNIRef_delRefCache(JNIEnv *env, jobject instance) {
+    if (g_j_cls_cache != nullptr) {
+        env->DeleteGlobalRef(g_j_cls_cache);
+    }
+}
