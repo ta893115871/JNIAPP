@@ -11,6 +11,8 @@ import com.bj.gxz.jniapp.cb.INativeThreadListener;
 import com.bj.gxz.jniapp.cb.JNIThreadCallBack;
 import com.bj.gxz.jniapp.crash.JNICrash;
 import com.bj.gxz.jniapp.exception.JNIException;
+import com.bj.gxz.jniapp.methodfield.AppInfo;
+import com.bj.gxz.jniapp.methodfield.JNIMethodField;
 import com.bj.gxz.jniapp.ref.JNIRef;
 
 public class MainActivity extends AppCompatActivity {
@@ -87,6 +89,17 @@ public class MainActivity extends AppCompatActivity {
         String ret6 = jniRef.refCache();
         Log.e(TAG, "refCache=" + ret6);
         jniRef.delRefCache();
+    }
+
+    public void onJniMethodField(View view) {
+        JNIMethodField jniMethodField = new JNIMethodField();
+
+        AppInfo javaInfo = new AppInfo("com.wg.com", 30);
+        javaInfo.setSize(500);
+        jniMethodField.getAppInfoFromJava(javaInfo);
+
+        AppInfo info = jniMethodField.createAppInfoFromJni();
+        Log.e(TAG, "info=" + info);
     }
 
 
