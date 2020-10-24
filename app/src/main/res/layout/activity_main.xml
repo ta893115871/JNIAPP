@@ -55,9 +55,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="onJniMethodField"
-        android:text="jni-引用"
+        android:text="jni-java交互"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/id_btn_crash" />
+        app:layout_constraintTop_toBottomOf="@id/id_btn_ref" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

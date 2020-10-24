@@ -8,6 +8,7 @@ extern "C" JNIEXPORT void  JNICALL
 Java_com_bj_gxz_jniapp_methodfield_JNIMethodField_getAppInfoFromJava(JNIEnv *env, jobject instance,
                                                                      jobject obj) {
 
+    // 根据java对象获取对象对应的class
     jclass cls = env->GetObjectClass(obj);
 
     // 获取&调用java方法
@@ -32,6 +33,7 @@ Java_com_bj_gxz_jniapp_methodfield_JNIMethodField_getAppInfoFromJava(JNIEnv *env
     char *tag_c_string = const_cast<char *>(env->GetStringUTFChars(tag_java, 0));
     LOG_D("TAG=%s", tag_c_string);
 
+    // 释放局部引用
     env->DeleteLocalRef(cls);
     env->ReleaseStringUTFChars(versionName, c_string);
     env->ReleaseStringUTFChars(tag_java, tag_c_string);
@@ -42,6 +44,7 @@ extern "C" JNIEXPORT jobject JNICALL
 Java_com_bj_gxz_jniapp_methodfield_JNIMethodField_createAppInfoFromJni(JNIEnv *env,
                                                                        jobject instance) {
 
+    // 获取java的class
     jclass cls = env->FindClass("com/bj/gxz/jniapp/methodfield/AppInfo");
 
     // 创建java对象，就是调用构造方法，构造方法的方法签名固定为<init>
@@ -56,6 +59,7 @@ Java_com_bj_gxz_jniapp_methodfield_JNIMethodField_createAppInfoFromJni(JNIEnv *e
     jfieldID size_field_id = env->GetFieldID(cls, "size", "J");
     env->SetLongField(obj, size_field_id, (jlong) 1000);
 
+    // 释放局部引用
     env->DeleteLocalRef(cls);
     return obj;
 }
