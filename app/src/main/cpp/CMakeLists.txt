@@ -19,6 +19,7 @@ add_library( # Sets the name of the library.
         # Provides a relative path to your source file(s).
 
 
+        jni_data.cpp
         jni_method_field.cpp
         jni_ref.cpp
         crash.cpp

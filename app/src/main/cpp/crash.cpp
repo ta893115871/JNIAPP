@@ -9,4 +9,5 @@ Java_com_bj_gxz_jniapp_crash_JNICrash_crash(JNIEnv *env, jobject thiz) {
     *p = 1;
     LOG_D("*P=%d", *p);
     free(p);
+    p= nullptr;
 }

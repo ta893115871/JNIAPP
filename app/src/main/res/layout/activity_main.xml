@@ -50,6 +50,7 @@
         android:text="jni-引用"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/id_btn_crash" />
+
     <Button
         android:id="@+id/id_btn_method_field"
         android:layout_width="wrap_content"
@@ -59,5 +60,13 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/id_btn_ref" />
 
+    <Button
+        android:id="@+id/id_btn_method_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onJniData"
+        android:text="基本数据类型对应关系"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/id_btn_method_field" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

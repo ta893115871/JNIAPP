@@ -10,6 +10,7 @@ import com.bj.gxz.jniapp.cb.INativeListener;
 import com.bj.gxz.jniapp.cb.INativeThreadListener;
 import com.bj.gxz.jniapp.cb.JNIThreadCallBack;
 import com.bj.gxz.jniapp.crash.JNICrash;
+import com.bj.gxz.jniapp.data.JNIData;
 import com.bj.gxz.jniapp.exception.JNIException;
 import com.bj.gxz.jniapp.methodfield.AppInfo;
 import com.bj.gxz.jniapp.methodfield.JNIMethodField;
@@ -100,6 +101,10 @@ public class MainActivity extends AppCompatActivity {
 
         AppInfo info = jniMethodField.createAppInfoFromJni();
         Log.e(TAG, "info=" + info);
+    }
+
+    public void onJniData(View view) {
+        new JNIData().data((byte) 100, 'A', true, (short) 100, 100, 100f, 100, 100, new float[]{1.0f, 2.1f, 3.3f});
     }
 
 
