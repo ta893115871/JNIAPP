@@ -1,11 +1,15 @@
 package com.bj.gxz.jniapp;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bj.gxz.jniapp.bitmap.JNIBitmap;
 import com.bj.gxz.jniapp.cb.INativeListener;
 import com.bj.gxz.jniapp.cb.INativeThreadListener;
 import com.bj.gxz.jniapp.cb.JNIThreadCallBack;
@@ -18,11 +22,13 @@ import com.bj.gxz.jniapp.ref.JNIRef;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "JNI";
+    private ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        imageView = findViewById(R.id.id_iv);
     }
 
     public void onMethodDynamic(View view) {
@@ -105,6 +111,27 @@ public class MainActivity extends AppCompatActivity {
 
     public void onJniData(View view) {
         new JNIData().data((byte) 100, 'A', true, (short) 100, 100, 100f, 100, 100, new float[]{1.0f, 2.1f, 3.3f});
+    }
+
+    public void onJniBitmap(View view) {
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.normal);
+        int color = bitmap.getPixel(0, 0);
+        Log.e(TAG, "getPixel[0][0] " + color + "=" + Integer.toHexString(color));
+
+        JNIBitmap jniBitmap = new JNIBitmap();
+        long start = System.currentTimeMillis();
+        if (jniBitmap.gray(bitmap) == 1) {
+            Log.e(TAG, "gray cost:" + (System.currentTimeMillis() - start));
+            imageView.setImageBitmap(bitmap);
+            int color2 = bitmap.getPixel(0, 0);
+            Log.e(TAG, "getPixel[0][0] " + color2 + "=" + Integer.toHexString(color2));
+        }
+        long start2 = System.currentTimeMillis();
+        Bitmap newBitmap = jniBitmap.leftRight(bitmap);
+        if (newBitmap != null) {
+            Log.e(TAG, "leftRight cost:" + (System.currentTimeMillis() - start2));
+            imageView.setImageBitmap(newBitmap);
+        }
     }
 
 
