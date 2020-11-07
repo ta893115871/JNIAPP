@@ -65,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
     public void onJniCrash(View view) {
         new JNICrash().crash();
     }
@@ -110,21 +109,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onJniData(View view) {
-        new JNIData().data((byte) 100, 'A', true, (short) 100, 100, 100f, 100, 100, new float[]{1.0f, 2.1f, 3.3f});
+        new JNIData().data((byte)100, 'A', true, (short)100, 100, 100f, 100, 100,
+            new float[] {1.0f, 2.1f, 3.3f});
     }
 
     public void onJniBitmap(View view) {
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.normal);
         int color = bitmap.getPixel(0, 0);
-        Log.e(TAG, "getPixel[0][0] " + color + "=" + Integer.toHexString(color));
+        Log.e(TAG, "java getPixel[0][0] " + color + "=" + Integer.toHexString(color));
 
         JNIBitmap jniBitmap = new JNIBitmap();
         long start = System.currentTimeMillis();
-        if (jniBitmap.gray(bitmap) == 1) {
-            Log.e(TAG, "gray cost:" + (System.currentTimeMillis() - start));
+        if (jniBitmap.negative(bitmap) == 1) {
+            Log.e(TAG, "negative cost:" + (System.currentTimeMillis() - start));
             imageView.setImageBitmap(bitmap);
             int color2 = bitmap.getPixel(0, 0);
-            Log.e(TAG, "getPixel[0][0] " + color2 + "=" + Integer.toHexString(color2));
+            Log.e(TAG, "java getPixel[0][0] " + color2 + "=" + Integer.toHexString(color2));
         }
         long start2 = System.currentTimeMillis();
         Bitmap newBitmap = jniBitmap.leftRight(bitmap);
@@ -133,6 +133,5 @@ public class MainActivity extends AppCompatActivity {
             imageView.setImageBitmap(newBitmap);
         }
     }
-
 
 }

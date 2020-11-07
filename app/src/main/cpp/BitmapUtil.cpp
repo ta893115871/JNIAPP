@@ -130,11 +130,11 @@ int BitmapUtil::negative(JNIEnv *env, jobject bitmap) {
             uint32_t alpha = (color >> 24) & 0xFF;
 
             if (i == 0 && j == 0) {
-                LOG_D("color %d=%x", color, color);
-                LOG_D("red %d=%x", red, red);
-                LOG_D("green %d=%x", green, green);
-                LOG_D("blue %d=%x", blue, blue);
-                LOG_D("alpha %d=%x", alpha, alpha);
+                LOG_D("jni color %d=%x", color, color);
+                LOG_D("jni red %d=%x", red, red);
+                LOG_D("jni green %d=%x", green, green);
+                LOG_D("jni blue %d=%x", blue, blue);
+                LOG_D("jni alpha %d=%x", alpha, alpha);
             }
 
             // 暖色系。就是加强R/G的分量
@@ -162,7 +162,7 @@ int BitmapUtil::negative(JNIEnv *env, jobject bitmap) {
                     (alpha << 24) | ((blue << 16)) | ((green << 8)) | red;
 
             if (i == 0 & j == 0) {
-                LOG_D("newColor %d=%x", newColor, newColor);
+                LOG_D("jni newColor %d=%x", newColor, newColor);
             }
 
             srcPix[w * i + j] = newColor;
