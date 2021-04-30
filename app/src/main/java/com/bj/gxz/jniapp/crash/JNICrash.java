@@ -1,7 +1,7 @@
 package com.bj.gxz.jniapp.crash;
 
 /**
- * Created by guxiuzhong@baidu.com on 2020/9/28.
+ * Created by guxiuzhong on 2020/9/28.
  */
 public class JNICrash {
     static {
