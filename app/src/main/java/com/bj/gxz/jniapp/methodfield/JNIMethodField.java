@@ -1,7 +1,7 @@
 package com.bj.gxz.jniapp.methodfield;
 
 /**
- * Created by guxiuzhong@baidu.com on 2020/10/24.
+ * Created by guxiuzhong on 2020/10/24.
  */
 public class JNIMethodField {
 
