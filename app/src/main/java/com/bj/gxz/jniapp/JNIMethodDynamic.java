@@ -2,7 +2,7 @@ package com.bj.gxz.jniapp;
 
 
 /**
- * Created by guxiuzhong@baidu.com on 2020/9/18.
+ * Created by guxiuzhong on 2020/9/18.
  */
 public class JNIMethodDynamic {
     // Used to load the 'native-lib' library on application startup.
