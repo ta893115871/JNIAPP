@@ -1,7 +1,7 @@
 package com.bj.gxz.jniapp.ref;
 
 /**
- * Created by guxiuzhong@baidu.com on 2020/10/13.
+ * Created by guxiuzhong on 2020/10/13.
  */
 public class JNIRef {
     static {
