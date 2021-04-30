@@ -3,7 +3,7 @@ package com.bj.gxz.jniapp.bitmap;
 import android.graphics.Bitmap;
 
 /**
- * Created by guxiuzhong@baidu.com on 2020/9/24.
+ * Created by guxiuzhong on 2020/9/24.
  */
 public class JNIBitmap {
 
