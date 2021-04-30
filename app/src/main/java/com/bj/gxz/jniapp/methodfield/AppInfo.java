@@ -3,7 +3,7 @@ package com.bj.gxz.jniapp.methodfield;
 import java.io.Serializable;
 
 /**
- * Created by guxiuzhong@baidu.com on 2020/10/24.
+ * Created by guxiuzhong on 2020/10/24.
  */
 public class AppInfo implements Serializable {
     private static final String TAG = "AppInfo";
