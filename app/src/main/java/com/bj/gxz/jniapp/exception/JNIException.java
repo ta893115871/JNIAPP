@@ -1,7 +1,7 @@
 package com.bj.gxz.jniapp.exception;
 
 /**
- * Created by guxiuzhong@baidu.com on 2020/9/23.
+ * Created by guxiuzhong on 2020/9/23.
  */
 public class JNIException {
     static {
